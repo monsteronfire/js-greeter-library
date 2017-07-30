@@ -84,4 +84,4 @@
 
   global.Greeter = global.$G = Greeter;
 
-}(window, jQuery);
+})(window, jQuery);
