@@ -77,7 +77,7 @@
     var self = this;
     self.firstname = firstname || '';
     self.lastname = lastname || '';
-    self.language = labguage || 'en';
+    self.language = language || 'en';
   };
 
   Greeter.init.prototype = Greeter.prototype;
