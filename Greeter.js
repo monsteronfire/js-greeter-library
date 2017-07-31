@@ -1,9 +1,11 @@
 (function(global, $) {
 
+  // 'new' an object
   var Greeter = function(firstname, lastname, language) {
     return new Greeter.init(firstname, lastname, language);
   };
 
+  //hidden within the scope of the IIFE and never directly accessible
   var supportedLangs = ['en', 'fj'];
 
   var greetings = {
@@ -21,7 +23,10 @@
     fj: 'Logged in'
   };
 
+  // prototype holds methods to save memory space
   Greeter.prototype = {
+
+    // 'this' refers to the calling object at execution time
     fullname: function () {
       return this.firstname + ' ' + this.lastname;
     },
@@ -32,6 +37,7 @@
       }
     },
 
+    // retrieve messages from object by referring to properties using [] syntax
     greeting: function () {
       return greetings[this.language] + ' ' + this.firstname + '!';
     },
@@ -40,10 +46,11 @@
       return formalGreetings[this.language] + ' ' + this.fullname();
     },
 
-    // Chainable function
+    // chainable methods return their own containing object
     greet: function(formal) {
       var message;
 
+      // if undefined or null it will be coerced to 'false'
       if (formal) {
         message = this.formalGreeting();
       } else {
@@ -90,6 +97,8 @@
 
       $(selector).html(message);
 
+      // 'this' refers to the calling object at execution time
+      // makes the method chainable
       return this;
     }
 
@@ -100,6 +109,7 @@
     self.firstname = firstname || '';
     self.lastname = lastname || '';
     self.language = language || 'en';
+    self.validate();
   };
 
   Greeter.init.prototype = Greeter.prototype;
